@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Martian+Mono:wdth,wght@75..112.5,100..800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@300;400;500;600&display=swap">
-<link rel="stylesheet" href="assets/app.css?v=8">
+<link rel="stylesheet" href="assets/app.css?v=9">
 </head>
 <body>
 
@@ -53,7 +53,7 @@
   <nav class="projects" aria-label="만든 것">
     <button class="prow" data-open="news" type="button">
       <span class="nm"><i class="mark news"></i>dev-news</span>
-      <span class="ds">개발과 AI 분야의 최신 뉴스를 여러 곳에서 스크랩해 한국어 요약과 함께 게시하는 웹 페이지입니다. 하루 세 번 직접 모읍니다.</span>
+      <span class="ds">해커뉴스, 긱뉴스 등에서 개발과 AI 뉴스를 하루 세 번 자동 수집합니다. 점수로 기사를 선별하고 같은 소식을 묶어 한국어 요약과 함께 올립니다.</span>
       <span class="mt">dev-news.net · 운영 중<br>누르면 펼쳐집니다</span>
     </button>
     <button class="prow" data-open="study" type="button">
@@ -81,7 +81,7 @@
   <div class="intro">
     <div>
       <h2>dev-news</h2>
-      <p>Hacker News, GeekNews, GitHub Trending, dev.to, Lobsters 같은 곳에서 개발과 AI 뉴스를 하루 세 번 긁어옵니다. 점수로 추리고 같은 이야기를 겹쳐 지운 뒤, 한국어 요약을 붙여 정적 페이지로 발행합니다. 맥미니 한 대에서 돌아갑니다.</p>
+      <p>여러 곳에 흩어진 개발 및 AI 뉴스를 밤마다 확인하려고 제작했습니다. 한국시간 00시, 08시, 16시에 기사를 모아 중복 소식을 묶고 LLM으로 한국어 요약을 생성합니다. 모든 내용은 정적 HTML 페이지로 발행됩니다.</p>
     </div>
     <div class="nums">
       <div><b id="nCount">—</b><span>이번 달 수집</span></div>
@@ -185,6 +185,6 @@
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/matter-js@0.20.0/build/matter.min.js" defer></script>
-<script src="assets/app.js?v=8" defer></script>
+<script src="assets/app.js?v=9" defer></script>
 </body>
 </html>
