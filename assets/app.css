@@ -33,9 +33,10 @@ h1,h2,h3{margin:0}
 .ghcard{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 20px 16px}
 .ghtop{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px;gap:16px}
 .ghlink{font-family:var(--pm);font-size:12px;text-decoration:none}
-.ghstats{display:flex;gap:22px;font-family:var(--pm);font-size:10.5px;color:var(--tx3)}
-.ghstats b{font-family:var(--mm);font-size:17px;font-variation-settings:"wght" 600,"wdth" 92;color:var(--tx)}
-.ghstats b.accent{color:var(--pri-dk)}
+/* 숫자를 크게 키워 라벨을 붙이면 셋 다 같은 종류의 지표로 읽힌다.
+   연도가 개수처럼 보이던 것도 그래서였다. 한 줄로 낮춰 사실만 적는다. */
+.ghstats{font-family:var(--pm);font-size:11.5px;color:var(--tx3);white-space:nowrap}
+.ghstats b{font-weight:500;color:var(--tx2)}
 .heat{display:flex;gap:2px;overflow:hidden}
 .heat span{display:flex;flex-direction:column;gap:2px}
 .heat i{width:8px;height:8px;border-radius:2px;background:var(--pri-bg)}
