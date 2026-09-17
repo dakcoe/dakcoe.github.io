@@ -52,10 +52,16 @@ h1,h2,h3{margin:0}
   color:var(--tx);cursor:pointer;text-decoration:none;font:inherit;
   transition:border-color .16s cubic-bezier(.2,.7,.2,1),box-shadow .16s,transform .16s}
 .prow:hover{border-color:#cfc9f4;box-shadow:0 6px 20px rgba(28,28,34,.07);transform:translateY(-2px)}
-.prow .nm{font-family:var(--mm);font-size:23px;font-variation-settings:"wght" 560,"wdth" 88;letter-spacing:-.015em;display:flex;align-items:center;gap:11px}
+.prow .nm{font-family:var(--mm);font-size:23px;font-variation-settings:"wght" 560,"wdth" 88;letter-spacing:-.015em;display:flex;align-items:center;gap:11px;flex-wrap:wrap}
 .prow .nm.kr{font-family:var(--kr);font-weight:600;font-size:21px;letter-spacing:-.02em}
 .mark{width:9px;height:9px;border-radius:50%;background:#c9c9d2;flex-shrink:0}
 .mark.news{background:var(--pri)} .mark.study{background:var(--app-accent)}
+/* 재직한 곳은 이름으로만 밝힌다. 남의 로고 마크를 기억으로 그리지 않는다. */
+.org{font-family:var(--pm);font-style:normal;font-size:10.5px;letter-spacing:.04em;color:var(--tx2);
+  background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:4px 9px;white-space:nowrap;
+  flex-basis:100%;max-width:max-content;margin:6px 0 0 20px}
+.prow.static{cursor:default}
+.prow.static:hover{border-color:var(--line);box-shadow:none;transform:none}
 .prow .ds{font-size:14.5px;font-weight:300;line-height:1.62;color:var(--tx2);word-break:keep-all;text-wrap:pretty}
 .prow .mt{font-family:var(--pm);font-size:11px;color:var(--tx3);text-align:right;line-height:1.7}
 
