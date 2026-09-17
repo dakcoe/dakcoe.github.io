@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Suhyun — dakcoe</title>
+<meta name="description" content="한동대학교 AICE 전공. 직접 쓰는 도구를 만들고 공개합니다. dev-news, study-assistant.">
+<link rel="icon" href="assets/avatar.png">
+<meta property="og:title" content="Suhyun — dakcoe">
+<meta property="og:description" content="한동대학교 AICE 전공. 직접 쓰는 도구를 만들고 공개합니다.">
+<meta property="og:image" content="https://dakcoe.github.io/assets/avatar.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Martian+Mono:wdth,wght@75..112.5,100..800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@300;400;500;600&display=swap">
+<link rel="stylesheet" href="assets/app.css">
+</head>
+<body>
+
+<main class="home" id="home">
+  <header class="head">
+    <div class="who">
+      <img class="avatar" src="assets/avatar.png" alt="" width="76" height="76">
+      <div>
+        <h1>Suhyun <a class="handle" href="https://github.com/dakcoe">@dakcoe</a></h1>
+        <p class="bio">한동대학교에서 AICE를 전공하고 있습니다. 코딩 동아리 슬기짜기에서 부회장을 맡고 있습니다. 직접 매일 쓰는 도구를 만들고, 쓸 만해지면 저장소를 공개합니다.</p>
+        <p class="contact">경북 포항 · <a href="mailto:superbleo2003@gmail.com">superbleo2003@gmail.com</a></p>
+      </div>
+    </div>
+
+    <section class="ghcard" aria-label="GitHub 활동">
+      <div class="ghtop">
+        <a class="ghlink" href="https://github.com/dakcoe">github.com/dakcoe</a>
+        <div class="ghstats">
+          <span><b id="ghRepos">—</b> 공개 저장소</span>
+          <span><b id="ghContrib" class="accent">—</b> 최근 1년 기여</span>
+          <span><b id="ghJoined">—</b> 가입</span>
+        </div>
+      </div>
+      <div class="heat" id="heat"></div>
+      <div class="ghfoot">
+        <span id="heatRange"></span>
+        <span class="legend">적음<i></i><i></i><i></i><i></i><i></i>많음</span>
+      </div>
+    </section>
+  </header>
+
+  <nav class="projects" aria-label="만든 것">
+    <button class="prow" data-open="news" type="button">
+      <span class="nm"><i class="mark news"></i>dev-news</span>
+      <span class="ds">개발과 AI 분야의 최신 뉴스를 여러 곳에서 스크랩해 한국어 요약과 함께 게시하는 웹 페이지입니다. 하루 세 번 직접 모읍니다.</span>
+      <span class="mt">dev-news.net · 운영 중<br>누르면 펼쳐집니다</span>
+    </button>
+    <button class="prow" data-open="study" type="button">
+      <span class="nm"><i class="mark study"></i>study-assistant</span>
+      <span class="ds">강의를 받아 적고 번역하고, 방금 들은 대목을 그대로 물어볼 수 있는 데스크탑 앱입니다.</span>
+      <span class="mt">macOS · Windows 배포 중<br>누르면 직접 써볼 수 있습니다</span>
+    </button>
+    <a class="prow" href="https://github.com/dakcoe">
+      <span class="nm kr"><i class="mark"></i>사내 익명 커뮤니티 앱</span>
+      <span class="ds">네 명이 만든 안드로이드 앱과 관리자 웹. 프론트엔드를 맡았습니다. 사내 프로젝트라 화면은 공개하지 않습니다.</span>
+      <span class="mt">2026.07 – 2026.09<br>Flutter · React · Supabase</span>
+    </a>
+  </nav>
+</main>
+
+<!-- dev-news -->
+<section class="view" id="newsView" hidden aria-label="dev-news">
+  <div class="viewbar">
+    <span id="newsCaption">dev-news</span>
+    <span class="bargroup">
+      <button class="tbtn" id="newsReset" type="button">다시 세우기</button>
+      <button class="tbtn" data-close type="button">닫기</button>
+    </span>
+  </div>
+  <div class="intro">
+    <div>
+      <h2>dev-news</h2>
+      <p>Hacker News, GeekNews, GitHub Trending, dev.to, Lobsters 같은 곳에서 개발과 AI 뉴스를 하루 세 번 긁어옵니다. 점수로 추리고 같은 이야기를 겹쳐 지운 뒤, 한국어 요약을 붙여 정적 페이지로 발행합니다. 맥미니 한 대에서 돌아갑니다.</p>
+    </div>
+    <div class="nums">
+      <div><b id="nCount">—</b><span>이번 달 수집</span></div>
+      <div><b>3회</b><span>하루 수집</span></div>
+      <div><b>6곳</b><span>수집 출처</span></div>
+    </div>
+  </div>
+  <div class="grid" id="grid"></div>
+  <p class="hint" id="newsHint">카드에 마우스를 올리면 떨어지고, 끌어서 옮길 수 있습니다</p>
+</section>
+
+<!-- study-assistant -->
+<section class="view" id="studyView" hidden aria-label="study-assistant 데모">
+  <div class="viewbar">
+    <span>study-assistant · 실제 앱을 그대로 옮긴 데모</span>
+    <span class="bargroup"><button class="tbtn" data-close type="button">닫기</button></span>
+  </div>
+  <div class="simstage" id="simstage">
+    <article class="bgpage" id="bgpage">
+      <div class="bgtop"><i></i><i></i><i></i><span>lecture.handong.edu / 컴퓨터 네트워크 · 3주차</span></div>
+      <div class="bgbody">
+        <div class="bgvideo">강의 영상 재생 중 · 24:11 / 51:40</div>
+        <h3>3. 인터넷을 보는 두 가지 관점</h3>
+        <p>인터넷은 네트워크들의 네트워크로 볼 수도 있고, 애플리케이션에 서비스를 제공하는 인프라로 볼 수도 있다. 앞의 관점은 구조를, 뒤의 관점은 쓰임을 설명한다.</p>
+        <p>라우터는 서로 다른 네트워크를 잇는 장치이고, 스위치는 한 네트워크 안에서 장치들을 잇는다. 둘의 역할을 헷갈리지 않는 것이 이 장의 핵심이다.</p>
+        <p class="muted">다음 주차: 프로토콜 계층과 캡슐화</p>
+      </div>
+    </article>
+
+    <div class="appwin" id="appwin">
+      <div class="apptitle" id="apptitle">
+        <span class="apptitleL">
+          <b>Voice Notes</b>
+          <button class="sw on" data-sw="top" type="button" aria-label="Always on Top"><i></i></button>
+          <small>Always on Top</small>
+        </span>
+        <span class="apptitleR">
+          <span class="abtn" aria-hidden="true">?</span>
+          <button class="abtn" id="gear" type="button" aria-label="설정">&#9881;</button>
+        </span>
+      </div>
+      <div class="apppanes">
+        <div class="apppane"><div id="srcPane"></div></div>
+        <div class="apppane"><div id="trgPane"></div></div>
+      </div>
+      <div class="applabels">
+        <span>원문</span>
+        <span class="right"><button class="sw on" data-sw="auto" type="button" aria-label="자동 번역"><i></i></button><small>자동 번역</small></span>
+      </div>
+      <div class="appctl">
+        <small>소리 입력</small><span class="asel">시스템 기본값 &#9662;</span>
+        <small>인식 언어</small>
+        <span class="chips">
+          <button class="chip" data-lang="ko" type="button">한국어</button>
+          <button class="chip on" data-lang="en" type="button">English</button>
+          <button class="chip" data-lang="ja" type="button">日本語</button>
+        </span>
+      </div>
+      <div class="appfoot">
+        <button class="mic" id="mic" type="button" aria-label="받아쓰기 시작">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><path d="M12 18v3"/></svg>
+        </button>
+        <span class="state" id="recState"><i></i>정지</span>
+        <span class="right"><button class="abtn2" id="clearBtn" type="button">Clear</button><button class="abtn2 primary" id="saveBtn" type="button">Save note</button></span>
+      </div>
+    </div>
+
+    <div class="settings" id="settings" hidden>
+      <div class="srow"><span>투명도</span>
+        <span class="opctl">
+          <button class="step" data-op="-" type="button">&minus;</button>
+          <input id="opRange" class="range" type="range" min="20" max="100" step="10" value="100" aria-label="투명도">
+          <b id="opVal">100%</b>
+          <button class="step" data-op="+" type="button">+</button>
+        </span>
+      </div>
+      <div class="srow"><span>Always on Top</span><button class="sw on" data-sw="top2" type="button" aria-label="Always on Top"><i></i></button></div>
+      <div class="srow"><span>창 위치</span>
+        <span class="posbtns">
+          <button class="opchip" data-pos="tl" type="button">&#8598;</button>
+          <button class="opchip" data-pos="tr" type="button">&#8599;</button>
+          <button class="opchip on" data-pos="c" type="button">가운데</button>
+          <button class="opchip" data-pos="bl" type="button">&#8601;</button>
+          <button class="opchip" data-pos="br" type="button">&#8600;</button>
+        </span>
+      </div>
+      <p class="snote">Always on Top 을 끄고 뒤쪽 강의 페이지를 누르면 앱이 그 뒤로 내려갑니다. 창은 제목 표시줄을 끌어서도 옮길 수 있습니다.</p>
+    </div>
+
+    <p class="simnote">강의 문장은 앱 저장소의 데모 화면에 쓰인 예시 그대로입니다.</p>
+  </div>
+</section>
+
+<footer class="bar">
+  <span id="status">한 화면에 다 있습니다.</span>
+  <span class="links">
+    <a href="https://github.com/dakcoe">GitHub</a>
+    <a href="https://dev-news.net">dev-news.net</a>
+    <a href="https://www.youtube.com/@dakcoe_303">YouTube</a>
+  </span>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/matter-js@0.20.0/build/matter.min.js" defer></script>
+<script src="assets/app.js" defer></script>
+</body>
+</html>
