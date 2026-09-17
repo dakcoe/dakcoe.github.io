@@ -26,6 +26,13 @@ Nothing here is invented.
 - Colours are lifted from the two projects' own source: dev-news uses its site tokens,
   the study-assistant demo uses the constants in that app's `main.py`.
 
+## Third-party marks
+
+`assets/ecoprobm.png` is EcoPro BM's own logo file, taken from
+`ecoprobm.com/ecoprobm/images/korean/common/logo.png` and cropped to the mark.
+It identifies a past employer and nothing here is affiliated with or endorsed
+by EcoPro BM. The mark was not redrawn.
+
 ## Layout
 
 Static files, no build step. GitHub Pages serves the repository root.

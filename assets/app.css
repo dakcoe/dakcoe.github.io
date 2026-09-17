@@ -56,10 +56,8 @@ h1,h2,h3{margin:0}
 .prow .nm.kr{font-family:var(--kr);font-weight:600;font-size:21px;letter-spacing:-.02em}
 .mark{width:9px;height:9px;border-radius:50%;background:#c9c9d2;flex-shrink:0}
 .mark.news{background:var(--pri)} .mark.study{background:var(--app-accent)}
-/* 재직한 곳은 이름으로만 밝힌다. 남의 로고 마크를 기억으로 그리지 않는다. */
-.org{font-family:var(--pm);font-style:normal;font-size:10.5px;letter-spacing:.04em;color:var(--tx2);
-  background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:4px 9px;white-space:nowrap;
-  flex-basis:100%;max-width:max-content;margin:6px 0 0 20px}
+/* 재직한 곳의 공식 로고. ecoprobm.com 이 쓰는 파일 그대로이고 다시 그리지 않았다. */
+.orglogo{flex-basis:100%;max-width:max-content;height:15px;width:auto;display:block;margin:9px 0 0 20px}
 .prow.static{cursor:default}
 .prow.static:hover{border-color:var(--line);box-shadow:none;transform:none}
 .prow .ds{font-size:14.5px;font-weight:300;line-height:1.62;color:var(--tx2);word-break:keep-all;text-wrap:pretty}
