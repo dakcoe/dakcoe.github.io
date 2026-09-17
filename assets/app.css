@@ -47,7 +47,22 @@ h1,h2,h3{margin:0}
 .legend i:nth-of-type(3){background:#a99ceb}.legend i:nth-of-type(4){background:#7c6ee6}
 .legend i:nth-of-type(5){background:#5b4fd0}
 
-.projects{display:flex;flex-direction:column;margin:auto 0 0;padding-bottom:58px}
+/* 빈 자리를 장식으로 메우지 않는다. dev-news 가 오늘 실제로 모은 제목을
+   낮은 대비로 깔아 둔다. 방문할 때마다 달라지고, 누르면 카드 화면으로 간다. */
+.feed{display:flex;flex-direction:column;gap:12px;margin:auto 0 0;padding:0;border:0;background:none;
+  text-align:left;font:inherit;color:inherit;cursor:pointer;min-height:0;overflow:hidden}
+.feed[hidden]{display:none}
+.feedhead{display:flex;align-items:baseline;justify-content:space-between;
+  font-family:var(--pm);font-size:11px;color:var(--tx3);padding-bottom:10px;border-bottom:1px solid var(--line)}
+.feedmore{color:#bcbcc6;transition:color .16s}
+.feed:hover .feedmore{color:var(--pri-dk)}
+.feedgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px 40px;
+  font-size:13px;font-weight:300;line-height:1.5;color:#b7b7c1;word-break:keep-all;
+  -webkit-mask-image:linear-gradient(#000 58%,transparent);mask-image:linear-gradient(#000 58%,transparent);
+  transition:color .16s}
+.feed:hover .feedgrid{color:#9a9aa6}
+.feedgrid i{font-style:normal;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.projects{display:flex;flex-direction:column;margin:26px 0 0;padding-bottom:58px}
 .prow{display:grid;grid-template-columns:296px minmax(0,1fr) 236px;gap:36px;align-items:center;width:100%;
   text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:24px 26px;margin:0 0 10px;
   color:var(--tx);cursor:pointer;text-decoration:none;font:inherit;
@@ -85,7 +100,9 @@ h1,h2,h3{margin:0}
 .grid{position:relative;flex:1 1 auto;margin-top:22px;min-height:0}
 .card{position:absolute;left:0;top:0;background:var(--panel);border:1px solid var(--line);border-radius:10px;
   padding:13px 15px;display:flex;flex-direction:column;justify-content:space-between;
-  box-shadow:0 1px 2px rgba(28,28,34,.04);will-change:transform;cursor:grab;touch-action:none}
+  box-shadow:0 1px 2px rgba(28,28,34,.04);will-change:transform;cursor:grab;touch-action:none;
+  user-select:none;-webkit-user-select:none;-webkit-user-drag:none}
+.card *{-webkit-user-drag:none;user-select:none}
 .card .t{font-size:13px;line-height:1.5;color:var(--tx);overflow:hidden;word-break:keep-all}
 .card .s{font-family:var(--pm);font-size:10px;color:var(--tx3);display:flex;justify-content:space-between;gap:8px}
 .card .s b{font-weight:500}
@@ -182,6 +199,8 @@ h1,h2,h3{margin:0}
   .ghstats{gap:16px;flex-wrap:wrap}
   .heat{overflow-x:auto}
   .projects{margin:0;padding-bottom:20px}
+  .feed{margin:0 0 20px}
+  .feedgrid{grid-template-columns:1fr;gap:7px;font-size:12.5px}
   .prow{grid-template-columns:1fr;gap:10px;padding:18px}
   .prow .mt{text-align:left}
   .view{position:fixed;inset:0 0 var(--bar-h);z-index:40}

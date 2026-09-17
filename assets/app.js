@@ -114,6 +114,8 @@ class NewsView {
       const col = i % cols, row = (i / cols) | 0;
       const el = document.createElement(d.u ? 'a' : 'div');
       el.className = 'card';
+      // 링크로 두면 브라우저가 끌기를 '링크 끌어놓기'로 가로채 물리 드래그가 죽는다.
+      el.draggable = false;
       if (d.u) { el.href = d.u; el.target = '_blank'; el.rel = 'noopener'; }
       const [name, color] = SRC[d.s] || SRC.rss;
       el.innerHTML = '<span class="t"></span><span class="s"><b></b><span></span></span>';
@@ -404,6 +406,32 @@ class StudyView {
   }
 }
 
+/* ---------- 빈 자리에 깔리는 오늘 수집분 ---------- */
+// 장식이 아니라 dev-news 가 오늘 실제로 모은 제목이다. 방문할 때마다 달라진다.
+function fillFeed(data, onOpen) {
+  if (!data.items.length) return;
+  const today = new Date().toISOString().slice(0, 10);
+  let rows = data.items.filter(a => a.d === today);
+  let label = '오늘 수집한 ' + rows.length + '건';
+  if (rows.length < 6) {
+    const latest = data.items.reduce((m, a) => (a.d > m ? a.d : m), '');
+    rows = data.items.filter(a => a.d === latest);
+    label = (latest || '최근') + ' 수집한 ' + rows.length + '건';
+  }
+  if (!rows.length) return;
+  const grid = $('#feedGrid'), frag = document.createDocumentFragment();
+  for (const a of rows.slice(0, 18)) {
+    const i = document.createElement('i');
+    i.textContent = a.t;
+    frag.appendChild(i);
+  }
+  grid.appendChild(frag);
+  $('#feedLabel').textContent = 'dev-news · ' + label;
+  const feed = $('#feed');
+  feed.hidden = false;
+  feed.addEventListener('click', onOpen);
+}
+
 /* ---------- 시작 ---------- */
 (async () => {
   boot();
@@ -412,6 +440,8 @@ class StudyView {
   $('#nCount').textContent = data.total;
   $('#newsCaption').textContent = 'dev-news · ' + (data.live ? '오늘 수집분' : '저장된 수집분') + ' ' + data.total + '건에서';
   const news = new NewsView(data);
+
+  fillFeed(data, () => news.open());
 
   $('[data-open="news"]').addEventListener('click', () => news.open());
   $('[data-open="study"]').addEventListener('click', () => study.open());

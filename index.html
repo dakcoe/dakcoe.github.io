@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Martian+Mono:wdth,wght@75..112.5,100..800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@300;400;500;600&display=swap">
-<link rel="stylesheet" href="assets/app.css?v=6">
+<link rel="stylesheet" href="assets/app.css?v=7">
 </head>
 <body>
 
@@ -39,6 +39,14 @@
       </div>
     </section>
   </header>
+
+  <button class="feed" id="feed" type="button" hidden aria-label="dev-news 오늘 수집분 펼치기">
+    <span class="feedhead">
+      <span class="feedlabel" id="feedLabel">dev-news</span>
+      <span class="feedmore">전부 보기</span>
+    </span>
+    <span class="feedgrid" id="feedGrid"></span>
+  </button>
 
   <nav class="projects" aria-label="만든 것">
     <button class="prow" data-open="news" type="button">
@@ -175,6 +183,6 @@
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/matter-js@0.20.0/build/matter.min.js" defer></script>
-<script src="assets/app.js?v=6" defer></script>
+<script src="assets/app.js?v=7" defer></script>
 </body>
 </html>
