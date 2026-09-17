@@ -17,7 +17,6 @@ async function boot() {
   let gh;
   try { gh = await (await fetch('assets/data/github.json')).json(); } catch { return; }
   $('#ghRepos').textContent = gh.public_repos;
-  $('#ghContrib').textContent = gh.contributions;
   $('#ghJoined').textContent = gh.joined.slice(0, 4);
   $('#heatRange').textContent = gh.from + ' – ' + gh.to;
 
