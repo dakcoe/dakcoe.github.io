@@ -188,28 +188,51 @@ h1,h2,h3{margin:0}
 .bar a{text-decoration:none}
 .bar a:hover{color:var(--pri-dk)}
 
+/* 한 화면 고정 레이아웃은 넓은 화면에서만 성립한다. 그 아래는 문서처럼 흐르게
+   두되, 폰용으로 줄인 값은 폰에서만 쓴다. 노트북 창까지 폰 취급하면
+   잔디가 먼지만 해진다. */
 @media (max-width:1100px){
   body{overflow:auto}
-  .home{position:static;inset:auto;padding:28px 20px 80px;display:block;min-height:auto}
-  .head{grid-template-columns:1fr;gap:24px;padding-bottom:28px}
+  .home{position:static;inset:auto;padding:36px 32px 48px;display:block;min-height:auto}
+  .head{grid-template-columns:1fr;gap:26px;padding-bottom:30px}
+  .ghcard{overflow:hidden;max-width:660px}
+  .projects{margin:0;padding-bottom:24px}
+  .feed{margin:0 0 24px}
+  .feedgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px 32px}
+  .view{position:fixed;inset:0;z-index:40}
+  .intro{margin:18px 28px 0}
+  .grid{margin-top:16px}
+  /* 바를 절대배치로 두면 스크롤되는 문서 중간에 떠 버린다. 흐름에 되돌린다. */
+  .bar{position:static;height:auto;padding:16px 32px}
+}
+
+/* 이름 296 + 설명 최소 260 + 메타 236 + 여백 72 = 864. 그 아래서는 3열이
+   설명을 짓눌러 한 단어씩 끊긴다. 먼저 세로로 세운다. */
+@media (max-width:900px){
+  .prow{grid-template-columns:1fr;gap:10px;padding:20px 22px}
+  .prow .mt{text-align:left}
+}
+
+@media (max-width:700px){
+  .home{padding:28px 20px 40px}
+  .head{gap:24px;padding-bottom:28px}
   .who{gap:14px}
   .avatar{width:56px;height:56px}
   .who h1{font-size:32px;flex-wrap:wrap;gap:8px}
-  .bio{font-size:14px;max-width:none}
-  .ghcard{overflow:hidden}
+  .bio{font-size:13.5px;line-height:1.75;max-width:none}
   .ghtop{flex-direction:column;align-items:flex-start;gap:10px}
-  .ghstats{gap:16px;flex-wrap:wrap}
-  /* 53주가 좁은 화면을 넘긴다. 칸을 줄여 통째로 들어가게 한다. */
+  .ghstats{white-space:normal}
+  /* 53주가 폰 화면을 넘긴다. 칸을 줄여 통째로 들어가게 한다. */
   .heat{gap:1px;overflow:hidden}
   .heat span{gap:1px}
   .heat i{width:4px;height:4px;border-radius:1px}
   .legend i{width:7px;height:7px}
-  .projects{margin:0;padding-bottom:20px}
+  /* 띠가 세로로 늘어져 화면을 잡아먹는다. 넉 줄만 남긴다. */
   .feed{margin:0 0 20px}
-  .feedgrid{grid-template-columns:1fr;gap:7px;font-size:12.5px}
-  .prow{grid-template-columns:1fr;gap:10px;padding:18px}
-  .prow .mt{text-align:left}
-  .view{position:fixed;inset:0;z-index:40}
+  .feedgrid{grid-template-columns:1fr;gap:7px;font-size:12.5px;
+    -webkit-mask-image:none;mask-image:none}
+  .feedgrid i:nth-child(n+5){display:none}
+  .prow{padding:18px}
   .viewbar{padding:0 16px;font-size:11px}
   .intro{margin:14px 16px 0;grid-template-columns:1fr;gap:16px;padding:16px}
   .nums{justify-content:flex-start;gap:20px}
@@ -220,8 +243,7 @@ h1,h2,h3{margin:0}
   .card .s{font-size:9.5px}
   .apppanes{grid-template-columns:1fr;gap:10px}
   .apppane{min-height:104px;padding:12px 14px;font-size:13px}
-  /* 창이 화면을 다 덮으면 뒤 강의 페이지가 안 보여 겹침 데모가 성립하지 않는다.
-     창을 좁히고 살짝 내려 페이지가 가장자리로 드러나게 한다. */
+  /* 창이 화면을 다 덮으면 뒤 강의 페이지가 안 보여 겹침 데모가 성립하지 않는다. */
   .bgpage{width:calc(100% - 16px);top:46%}
   .appwin{width:84%;margin-top:34px}
   /* 라벨과 조작이 한 줄에서 겹친다. 라벨 | 조작 두 칸으로 세운다. */
@@ -229,15 +251,10 @@ h1,h2,h3{margin:0}
   .chips{justify-self:start}
   .appfoot{flex-wrap:wrap;gap:10px}
   .settings{width:min(320px,calc(100vw - 32px))}
-  /* 바를 절대배치로 두면 스크롤되는 문서 중간에 떠 버린다. 흐름에 되돌린다. */
-  .bar{position:static;height:auto;padding:14px 16px;font-size:10px;
-    flex-direction:column;align-items:flex-start;gap:8px}
+  .bar{padding:14px 16px;font-size:10px;flex-direction:column;align-items:flex-start;gap:8px}
   .bar .links{gap:14px}
-  /* 띠가 세로로 늘어져 화면을 잡아먹는다. 넉 줄만 남긴다. */
-  .feedgrid i:nth-child(n+5){display:none}
-  .feedgrid{-webkit-mask-image:none;mask-image:none}
-  .bio{font-size:13.5px;line-height:1.75}
 }
+
 @media (prefers-reduced-motion:reduce){
   *{animation-duration:.01ms!important;transition-duration:.01ms!important}
 }
