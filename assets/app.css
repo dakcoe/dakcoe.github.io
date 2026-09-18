@@ -52,15 +52,16 @@ h1,h2,h3{margin:0}
 .feed{display:flex;flex-direction:column;gap:12px;margin:auto 0 0;padding:0;border:0;background:none;
   text-align:left;font:inherit;color:inherit;cursor:pointer;min-height:0;overflow:hidden}
 .feed[hidden]{display:none}
-.feedhead{display:flex;align-items:baseline;justify-content:space-between;
-  font-family:var(--pm);font-size:11px;color:var(--tx3);padding-bottom:10px;border-bottom:1px solid var(--line)}
-.feedmore{color:#bcbcc6;transition:color .16s}
+/* 11px 은 읽기에 작고, 전부 보기는 누르는 곳이라 더 그렇다. */
+.feedhead{display:flex;align-items:baseline;justify-content:space-between;gap:16px;
+  font-family:var(--pm);font-size:13px;color:var(--tx2);padding-bottom:11px;border-bottom:1px solid var(--line)}
+.feedmore{color:var(--tx2);transition:color .16s}
 .feed:hover .feedmore{color:var(--pri-dk)}
 .feedgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px 40px;
-  font-size:13px;font-weight:300;line-height:1.5;color:#b7b7c1;word-break:keep-all;
+  font-size:13px;font-weight:300;line-height:1.5;color:#9a9aa6;word-break:keep-all;
   -webkit-mask-image:linear-gradient(#000 58%,transparent);mask-image:linear-gradient(#000 58%,transparent);
   transition:color .16s}
-.feed:hover .feedgrid{color:#9a9aa6}
+.feed:hover .feedgrid{color:#7c7c88}
 .feedgrid i{font-style:normal;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .projects{display:flex;flex-direction:column;margin:26px 0 0;padding-bottom:58px}
 .prow{display:grid;grid-template-columns:296px minmax(0,1fr) 236px;gap:36px;align-items:center;width:100%;
