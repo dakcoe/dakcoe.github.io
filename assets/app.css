@@ -49,16 +49,20 @@ h1,h2,h3{margin:0}
 
 /* 빈 자리를 장식으로 메우지 않는다. dev-news 가 오늘 실제로 모은 제목을
    낮은 대비로 깔아 둔다. 방문할 때마다 달라지고, 누르면 카드 화면으로 간다. */
+/* 높이 고정 홈에서는 남는 공간을 이 띠가 먹는다. 바닥을 안 주면 공간이
+   모자랄 때 제일 먼저 짓눌려 점처럼 남는다. */
 .feed{display:flex;flex-direction:column;gap:12px;margin:auto 0 0;padding:0;border:0;background:none;
-  text-align:left;font:inherit;color:inherit;cursor:pointer;min-height:0;overflow:hidden}
+  text-align:left;font:inherit;color:inherit;cursor:pointer;min-height:132px;overflow:hidden}
 .feed[hidden]{display:none}
-/* 11px 은 읽기에 작고, 전부 보기는 누르는 곳이라 더 그렇다. */
+/* 섹션 머리글이다. 아래 헤드라인(13px)보다 커야 머리글로 읽힌다.
+   전부 보기는 카드 화면을 여는 조작이라 더 또렷해야 한다. */
 .feedhead{display:flex;align-items:baseline;justify-content:space-between;gap:16px;
-  font-family:var(--pm);font-size:13px;color:var(--tx2);padding-bottom:11px;border-bottom:1px solid var(--line)}
-.feedmore{color:var(--tx2);transition:color .16s}
-.feed:hover .feedmore{color:var(--pri-dk)}
-.feedgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px 40px;
-  font-size:13px;font-weight:300;line-height:1.5;color:#9a9aa6;word-break:keep-all;
+  font-family:var(--pm);font-size:15px;color:var(--tx2);padding-bottom:13px;border-bottom:1px solid var(--line)}
+.feedlabel{font-weight:500;color:var(--tx)}
+.feedmore{font-weight:500;color:var(--pri-dk);transition:color .16s}
+.feed:hover .feedmore{color:#4a3fb8}
+.feedgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 40px;
+  font-size:13.5px;font-weight:300;line-height:1.5;color:#9a9aa6;word-break:keep-all;
   -webkit-mask-image:linear-gradient(#000 58%,transparent);mask-image:linear-gradient(#000 58%,transparent);
   transition:color .16s}
 .feed:hover .feedgrid{color:#7c7c88}
@@ -192,7 +196,9 @@ h1,h2,h3{margin:0}
 /* 한 화면 고정 레이아웃은 넓은 화면에서만 성립한다. 그 아래는 문서처럼 흐르게
    두되, 폰용으로 줄인 값은 폰에서만 쓴다. 노트북 창까지 폰 취급하면
    잔디가 먼지만 해진다. */
-@media (max-width:1100px){
+/* 좁아도, 낮아도 한 화면 고정은 성립하지 않는다. 둘 중 하나면 문서처럼 흐른다.
+   고정 배치에 필요한 세로는 대략 910px 이다. */
+@media (max-width:1100px), (max-height:880px){
   body{overflow:auto}
   .home{position:static;inset:auto;padding:36px 32px 48px;display:block;min-height:auto}
   .head{grid-template-columns:1fr;gap:26px;padding-bottom:30px}
