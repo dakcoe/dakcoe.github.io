@@ -9,6 +9,8 @@ const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
 const status = $('#status');
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+// 모바일은 스크롤되므로 '한 화면' 이라는 말이 사실이 아니다.
+const HOME_STATUS = 'dev-news 와 study-assistant 는 눌러서 직접 써볼 수 있습니다.';
 
 /* ---------- GitHub 패널 ---------- */
 // 기여 잔디는 GraphQL 이라 토큰 없이는 못 부른다. 빌드 때 구워 둔 값을 쓰고,
@@ -25,6 +27,7 @@ async function boot() {
     const col = document.createElement('span');
     for (const n of week) {
       const c = document.createElement('i');
+      // 크기는 CSS 가 정한다. 여기서 박아 넣으면 좁은 화면에서 못 줄인다.
       c.style.background = n === 0 ? '#efedfd' : n < 4 ? '#cfc7f5' : n < 10 ? '#a99ceb' : n < 20 ? '#7c6ee6' : '#5b4fd0';
       c.title = n + '회';
       col.appendChild(c);
@@ -76,12 +79,18 @@ class NewsView {
   open() {
     $('#newsView').hidden = false;
     if (!this.built) { this.built = true; this.build(); }
-    status.textContent = '카드를 훑으면 떨어져 쌓입니다. 끌어서 옮길 수도 있습니다. Esc로 닫습니다.';
+    const touch = matchMedia('(pointer: coarse)').matches;
+    $('#newsHint').textContent = touch
+      ? '카드를 문질러 떨어뜨리고, 끌어서 옮길 수 있습니다'
+      : '카드에 마우스를 올리면 떨어지고, 끌어서 옮길 수 있습니다';
+    status.textContent = touch
+      ? '카드를 문지르면 떨어져 쌓입니다. 끌어서 옮길 수도 있습니다.'
+      : '카드를 훑으면 떨어져 쌓입니다. 끌어서 옮길 수도 있습니다. Esc로 닫습니다.';
   }
 
   close() {
     $('#newsView').hidden = true;
-    status.textContent = '한 화면에 다 있습니다.';
+    status.textContent = HOME_STATUS;
   }
 
   build() {
@@ -92,9 +101,13 @@ class NewsView {
     const cols = W < 700 ? 2 : W < 1000 ? 4 : 6;
     const pad = W < 700 ? 14 : 40, gap = 12;
     const cw = Math.floor((W - pad * 2 - gap * (cols - 1)) / cols);
-    const ch = W < 700 ? 92 : 108;
+    const ch = W < 700 ? 84 : 108;
     // 격자는 위쪽에만 둔다. 아래를 비워야 떨어지는 게 보인다.
-    const rows = Math.max(2, Math.min(4, Math.floor((H * 0.55) / (ch + gap))));
+    // 좁은 화면은 높이가 적어 비율로 나누면 두 줄밖에 안 남는다. 떨어질 거리를
+    // 고정으로 떼어두고 남는 만큼 줄을 채운다.
+    const rows = W < 700
+      ? Math.max(2, Math.min(4, Math.floor((H - 170) / (ch + gap))))
+      : Math.max(2, Math.min(4, Math.floor((H * 0.55) / (ch + gap))));
     const items = this.data.items.slice(0, cols * rows);
 
     const engine = this.engine = Engine.create({ enableSleeping: true });
@@ -268,7 +281,7 @@ class StudyView {
   }
 
   open() { $('#studyView').hidden = false; status.textContent = '마이크로 받아쓰기, 톱니로 투명도. Always on Top 을 끄면 뒤 페이지가 앱을 덮습니다.'; }
-  close() { this.stop(); this.panel.hidden = true; $('#studyView').hidden = true; status.textContent = '한 화면에 다 있습니다.'; }
+  close() { this.stop(); this.panel.hidden = true; $('#studyView').hidden = true; status.textContent = HOME_STATUS; }
 
   wire() {
     $('#mic').addEventListener('click', () => this.recording ? this.stop() : this.start());
