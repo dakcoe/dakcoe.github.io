@@ -201,8 +201,6 @@ h1,h2,h3{margin:0}
 @media (max-width:1100px), (max-height:880px){
   body{overflow:auto}
   .home{position:static;inset:auto;padding:36px 32px 48px;display:block;min-height:auto}
-  .head{grid-template-columns:1fr;gap:26px;padding-bottom:30px}
-  .ghcard{overflow:hidden;max-width:660px}
   .projects{margin:0;padding-bottom:24px}
   .feed{margin:0 0 24px}
   .feedgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px 32px}
@@ -211,6 +209,12 @@ h1,h2,h3{margin:0}
   .grid{margin-top:16px}
   /* 바를 절대배치로 두면 스크롤되는 문서 중간에 떠 버린다. 흐름에 되돌린다. */
   .bar{position:static;height:auto;padding:16px 32px}
+}
+
+/* 소개 옆 자리는 너비가 모자랄 때만 뺏는다. 창이 낮기만 하면 흐르되 두 열은 유지. */
+@media (max-width:1100px){
+  .head{grid-template-columns:1fr;gap:26px;padding-bottom:30px}
+  .ghcard{overflow:hidden;max-width:660px}
 }
 
 /* 이름 296 + 설명 최소 260 + 메타 236 + 여백 72 = 864. 그 아래서는 3열이
